@@ -247,3 +247,55 @@
 .error-message {
     transition: opacity 0.3s ease-in-out;
 }
+
+/* Media Queries per il layout responsivo */
+
+/* Tablet */
+@media (max-width: 768px) {
+    .configurator {
+        width: 80%;
+        padding: 24px;
+        top: 15vh;
+    }
+
+    .configurator__section__values {
+        grid-template-columns: repeat(3, 1fr); /* 3 colonne per tablet */
+    }
+
+    .random-button-floating {
+        left: 150px;
+        bottom: 200px;
+    }
+
+    .send-button {
+        bottom: 40px;
+        right: 50px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .configurator {
+        width: 95%;
+        padding: 16px;
+        top: 20vh;
+    }
+
+    .configurator__section__values {
+        grid-template-columns: repeat(2, 1fr); /* 2 colonne per mobile */
+    }
+
+    .random-button-floating {
+        left: 50px;
+        bottom: 120px;
+    }
+
+    .send-button {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .popup-container {
+        width: 80%; /* Popup più largo su mobile */
+    }
+}
