@@ -273,29 +273,88 @@
     }
 }
 
-/* Mobile */
-@media (max-width: 480px) {
+/* Layout per dispositivi mobili */
+@media (max-width: 600px) {
+    .App {
+        display: flex;
+        flex-direction: column; /* Imposta i contenuti in colonna */
+        justify-content: center; /* Allinea verticalmente */
+        align-items: center; /* Centra orizzontalmente */
+        height: 100vh; /* Imposta l'altezza della schermata */
+        font-family: "Poppins", sans-serif;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    /* Configuratore ottimizzato per mobile */
     .configurator {
-        width: 95%;
-        padding: 16px;
-        top: 20vh;
+        width: 100%; /* Occupa tutta la larghezza */
+        max-width: 500px; /* Imposta una larghezza massima per evitare schermi troppo ampi */
+        height: auto; /* Imposta l'altezza automatica */
+        padding: 20px;
+        background: rgba(50, 46, 121, 0.8);
+        border-radius: 20px;
+        box-sizing: border-box;
+        overflow-y: auto; /* Consente lo scroll verticale */
     }
 
+    /* Impostazioni della sezione dei colori */
     .configurator__section__values {
-        grid-template-columns: repeat(2, 1fr); /* 2 colonne per mobile */
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Due colonne per dispositivi mobili */
+        gap: 12px;
+        padding: 24px 0;
     }
 
+    /* Oggetti individuali */
+    .item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: all 0.4s;
+    }
+
+    .item__dot {
+        width: 30px;
+        height: 30px;
+    }
+
+    .item__label {
+        font-size: 12px;
+        font-weight: bold;
+        color: #cf9f1a;
+        text-transform: capitalize;
+    }
+
+    /* Centra il pulsante random sulla pagina mobile */
     .random-button-floating {
-        left: 50px;
-        bottom: 120px;
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%); /* Centra orizzontalmente */
+        bottom: 30px;
+        z-index: 100;
     }
 
+    /* Pulsante di invio nella parte inferiore */
     .send-button {
+        position: fixed;
         bottom: 20px;
         right: 20px;
+        background-color: rgb(72, 190, 18);
+        color: white;
+        padding: 12px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
-
-    .popup-container {
-        width: 80%; /* Popup più largo su mobile */
+    .portabadge {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain; /* Rende l'immagine adattabile alla dimensione */
+        display: block;
+        margin: 0 auto; /* Centra l'immagine */
     }
 }
