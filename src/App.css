@@ -273,69 +273,48 @@
     }
 }
 
-/* Layout per dispositivi mobili */
-@media (max-width: 600px) {
+/* Layout per dispositivi mobili in verticale */
+@media (max-width: 768px) {
+    /* App principale che si adatta al mobile */
     .App {
-        display: flex;
-        flex-direction: column; /* Imposta i contenuti in colonna */
-        justify-content: center; /* Allinea verticalmente */
-        align-items: center; /* Centra orizzontalmente */
-        height: 100vh; /* Imposta l'altezza della schermata */
+        width: 100%;
+        height: 100vh;
         font-family: "Poppins", sans-serif;
-        padding: 10px;
-        box-sizing: border-box;
-    }
-
-    /* Configuratore ottimizzato per mobile */
-    .configurator {
-        width: 100%; /* Occupa tutta la larghezza */
-        max-width: 500px; /* Imposta una larghezza massima per evitare schermi troppo ampi */
-        height: auto; /* Imposta l'altezza automatica */
-        padding: 20px;
-        background: rgba(50, 46, 121, 0.8);
-        border-radius: 20px;
-        box-sizing: border-box;
-        overflow-y: auto; /* Consente lo scroll verticale */
-    }
-
-    /* Impostazioni della sezione dei colori */
-    .configurator__section__values {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* Due colonne per dispositivi mobili */
-        gap: 12px;
-        padding: 24px 0;
-    }
-
-    /* Oggetti individuali */
-    .item {
+        overflow: auto;
         display: flex;
         flex-direction: column;
         align-items: center;
-        transition: all 0.4s;
     }
 
-    .item__dot {
-        width: 30px;
-        height: 30px;
+    /* Configuratore che si adatta al mobile */
+    .configurator {
+        width: 100%;
+        max-width: 500px;  /* Puoi anche utilizzare max-width: 100% se vuoi che occupi tutta la larghezza */
+        margin-top: 20px;
+        background: rgba(50, 46, 121, 0.8);
+        padding: 20px;
+        border-radius: 20px;
+        overflow-y: auto;
     }
 
-    .item__label {
-        font-size: 12px;
-        font-weight: bold;
-        color: #cf9f1a;
-        text-transform: capitalize;
+    /* Layout dei colori */
+    .configurator__section__values {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Due colonne */
+        gap: 12px;
+        padding: 16px 0;
     }
 
-    /* Centra il pulsante random sulla pagina mobile */
+    /* Centriamo l'elemento random button */
     .random-button-floating {
         position: fixed;
         left: 50%;
-        transform: translateX(-50%); /* Centra orizzontalmente */
-        bottom: 30px;
+        transform: translateX(-50%);
+        bottom: 20px;
         z-index: 100;
     }
 
-    /* Pulsante di invio nella parte inferiore */
+    /* Pulsante di invio */
     .send-button {
         position: fixed;
         bottom: 20px;
@@ -350,11 +329,13 @@
         transition: background-color 0.3s;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
+
+    /* Gestione dell'immagine portabadge su mobile */
     .portabadge {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain; /* Rende l'immagine adattabile alla dimensione */
+        width: 100%;
+        height: auto;
         display: block;
-        margin: 0 auto; /* Centra l'immagine */
+        margin: 0 auto;
+        object-fit: contain;
     }
 }
