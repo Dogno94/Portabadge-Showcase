@@ -280,16 +280,17 @@
         width: 100%;
         height: 100vh;
         font-family: "Poppins", sans-serif;
-        overflow: auto;
         display: flex;
         flex-direction: column;
         align-items: center;
+        overflow: auto;
+        padding: 10px;
     }
 
     /* Configuratore che si adatta al mobile */
     .configurator {
         width: 100%;
-        max-width: 500px;  /* Puoi anche utilizzare max-width: 100% se vuoi che occupi tutta la larghezza */
+        max-width: 100%;  /* Assicurati che la larghezza sia al massimo 100% */
         margin-top: 20px;
         background: rgba(50, 46, 121, 0.8);
         padding: 20px;
@@ -297,7 +298,7 @@
         overflow-y: auto;
     }
 
-    /* Layout dei colori */
+    /* Layout dei colori che si dispongono in una sola colonna */
     .configurator__section__values {
         display: grid;
         grid-template-columns: repeat(2, 1fr); /* Due colonne */
@@ -305,7 +306,16 @@
         padding: 16px 0;
     }
 
-    /* Centriamo l'elemento random button */
+    /* Modifica delle dimensioni per il Portabadge */
+    .portabadge {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        object-fit: contain;
+    }
+
+    /* Allineamento e posizionamento dei pulsanti in mobile */
     .random-button-floating {
         position: fixed;
         left: 50%;
@@ -314,7 +324,6 @@
         z-index: 100;
     }
 
-    /* Pulsante di invio */
     .send-button {
         position: fixed;
         bottom: 20px;
@@ -329,13 +338,47 @@
         transition: background-color 0.3s;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
-
-    /* Gestione dell'immagine portabadge su mobile */
-    .portabadge {
-        width: 100%;
-        height: auto;
-        display: block;
-        margin: 0 auto;
-        object-fit: contain;
+    
+    /* Controlla che gli item si allineano in colonna */
+    .item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: all 0.4s;
+        width: 100%;  /* Fai sì che l'elemento non esca dalla larghezza */
+        box-sizing: border-box;  /* Includi padding e margini nel calcolo della larghezza */
     }
+
+    .item__dot {
+        width: 32px;
+        height: 32px;
+        border-radius: 100%;
+        border: solid 2px #999999;
+    }
+
+    .item:hover {
+        opacity: 0.9;
+        cursor: pointer;
+    }
+
+    .item__label {
+        text-align: center;
+        font-weight: bold;
+        font-size: 12px;
+        color: #cf9f1a;
+        text-transform: capitalize;
+    }
+
+    .item.item--active .item__dot {
+        border: solid 2px rgb(219, 189, 89);
+    }
+
+    .item.item--active .item__label {
+        color: white;
+    }
+}
+
+/* Layout per schermi più grandi, come desktop */
+@media (min-width: 769px) {
+    /* Se necessario, aggiusta i layout per schermi più grandi */
 }
