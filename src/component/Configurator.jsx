@@ -75,7 +75,7 @@ const Configurator = () => {
                 setShowPopup(false);  // Chiudi il popup dopo l'invio
                 setIsProcessing(false);
                 setShowSuccess(true);
-                
+
                 setTimeout(() => {
                     setShowSuccess(false);  // Nascondi il messaggio di errore
                 }, 1500);
@@ -102,149 +102,227 @@ const Configurator = () => {
         setIsProcessing(false);
     };
 
+    const isMobile = window.innerWidth < 768;
+
     return (
         <>
-            {/* Colonna SINISTRA */}
-            <div className="configurator configurator--left">
-                <div className="configurator__section">
-                    <div className="configurator__section__title">Cornice</div>
-                    <div className="configurator__section__values">
-                        {materialColors.map((item, index) => (
-                            <div
-                                key={index}
-                                className={`item ${item.color === corniceColor.color ? "item--active" : ""}`}
-                                onClick={() => setCorniceColor(item)}
-                            >
-                                <div className="item__dot" style={{ backgroundColor: item.color }} />
-                                <div className="item__label">{item.name}</div>
-                            </div>
-                        ))}
+            <div className="configurator-container">
+                {/* Colonna SINISTRA */}
+                <div className="configurator configurator--left">
+                    <div className="configurator__section">
+                        <div className="configurator__section__title">Cornice</div>
+                        <div className="configurator__section__values">
+                            {isMobile ? (
+                                <select
+                                    className="color-dropdown"
+                                    value={corniceColor.name}
+                                    onChange={(e) => {
+                                        const selected = materialColors.find(c => c.name === e.target.value);
+                                        setCorniceColor(selected);
+                                    }}
+                                >
+                                    {materialColors.map((item, index) => (
+                                        <option key={index} value={item.name}>{item.name}</option>
+                                    ))}
+                                </select>
+                            ) : (
+                                materialColors.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className={`item ${item.color === corniceColor.color ? "item--active" : ""}`}
+                                        onClick={() => setCorniceColor(item)}
+                                    >
+                                        <div className="item__dot" style={{ backgroundColor: item.color }} />
+                                        <div className="item__label">{item.name}</div>
+                                    </div>
+                                ))
+                            )}
+                        </div>
+                    </div>
+                    <div className="configurator__section">
+                        <div className="configurator__section__title">Facciata Gameboy</div>
+                        <div className="configurator__section__values">
+                            {isMobile ? (
+                                <select
+                                    className="color-dropdown"
+                                    value={facciataColor.name}
+                                    onChange={(e) => {
+                                        const selected = materialColors.find(c => c.name === e.target.value);
+                                        setFacciataColor(selected);
+                                    }}
+                                >
+                                    {materialColors.map((item, index) => (
+                                        <option key={index} value={item.name}>{item.name}</option>
+                                    ))}
+                                </select>
+                            ) : (
+                                materialColors.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className={`item ${item.color === facciataColor.color ? "item--active" : ""}`}
+                                        onClick={() => setFacciataColor(item)}
+                                    >
+                                        <div className="item__dot" style={{ backgroundColor: item.color }} />
+                                        <div className="item__label">{item.name}</div>
+                                    </div>
+                                ))
+                            )}
+                        </div>
                     </div>
                 </div>
 
-                <div className="configurator__section">
-                    <div className="configurator__section__title">Facciata Gameboy</div>
-                    <div className="configurator__section__values">
-                        {materialColors.map((item, index) => (
-                            <div
-                                key={index}
-                                className={`item ${item.color === facciataColor.color ? "item--active" : ""}`}
-                                onClick={() => setFacciataColor(item)}
-                            >
-                                <div className="item__dot" style={{ backgroundColor: item.color }} />
-                                <div className="item__label">{item.name}</div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-
-            <div className="random-button-floating">
-                <button className="random-button" onClick={handleRandomizeColors}>
-                    🎲 Random
-                </button>
-            </div>
-
-            <div className="send-button">
-                <button onClick={handleSendConfiguration}>
-                    {isSending ? "Invio..." : "📩 Invia configurazione"}
-                </button>
-            </div>
-
-            {/* Popup per inserire nome ed email */}
-            {showPopup && (
-                <div className="popup-overlay">
-                    <div className="popup-container">
-                        <button className="popup-close-button" onClick={handleClosePopup}>❌</button>
-                        <h3>Inserisci nome e email</h3>
-                        <form className="popup-form" onSubmit={handleFormSubmit}>
-                            <input
-                                type="text"
-                                placeholder="Nome"
-                                value={customerName}
-                                onChange={(e) => setCustomerName(e.target.value)}
-                                required
-                            />
-                            <input
-                                type="email"
-                                placeholder="Email"
-                                value={customerEmail}
-                                onChange={(e) => setCustomerEmail(e.target.value)}
-                                required
-                            />
-                            <button type="submit" disabled={isProcessing}>
-                                {isProcessing ? "Invio..." : "Invia"}
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            )}
-
-            {/* Success Message */}
-            {showSuccess && (
-                <div className="popup-overlay success-message">
-                    <div className="popup-container success-popup">
-                        <p>La tua configurazione è stata inviata con successo!</p>
-                    </div>
-                </div>
-            )}
-
-            {/* Error Message */}
-            {showError && (
-                <div className="popup-overlay error-message">
-                    <div className="popup-container error-popup">
-                        <p>Si è verificato un errore durante l'invio!</p>
-                    </div>
-                </div>
-            )}
-
-            {/* Colonna DESTRA */}
-            <div className="configurator configurator--right">
-                <div className="configurator__section">
-                    <div className="configurator__section__title">Tasti</div>
-                    <div className="configurator__section__values">
-                        {materialColors.map((item, index) => (
-                            <div
-                                key={index}
-                                className={`item ${item.color === tastiColor.color ? "item--active" : ""}`}
-                                onClick={() => setTastiColor(item)}
-                            >
-                                <div className="item__dot" style={{ backgroundColor: item.color }} />
-                                <div className="item__label">{item.name}</div>
-                            </div>
-                        ))}
-                    </div>
+                <div className="random-button-floating">
+                    <button className="random-button" onClick={handleRandomizeColors}>
+                        🎲 Random
+                    </button>
                 </div>
 
-                <div className="configurator__section">
-                    <div className="configurator__section__title">Schermo</div>
-                    <div className="configurator__section__values">
-                        {materialColors.map((item, index) => (
-                            <div
-                                key={index}
-                                className={`item ${item.color === schermo2Color.color ? "item--active" : ""}`}
-                                onClick={() => setSchermo2Color(item)}
-                            >
-                                <div className="item__dot" style={{ backgroundColor: item.color }} />
-                                <div className="item__label">{item.name}</div>
-                            </div>
-                        ))}
-                    </div>
+                <div className="send-button">
+                    <button onClick={handleSendConfiguration}>
+                        {isSending ? "Invio..." : "📩 Invia configurazione"}
+                    </button>
                 </div>
 
-                <div className="configurator__section">
-                    <div className="configurator__section__title">Speaker</div>
-                    <div className="configurator__section__values">
-                        {materialColors.map((item, index) => (
-                            <div
-                                key={index}
-                                className={`item ${item.color === ariaColor.color ? "item--active" : ""}`}
-                                onClick={() => setAriaColor(item)}
-                            >
-                                <div className="item__dot" style={{ backgroundColor: item.color }} />
-                                <div className="item__label">{item.name}</div>
-                            </div>
-                        ))}
+                {/* Popup per inserire nome ed email */}
+                {showPopup && (
+                    <div className="popup-overlay">
+                        <div className="popup-container">
+                            <button className="popup-close-button" onClick={handleClosePopup}>❌</button>
+                            <h3>Inserisci nome e email</h3>
+                            <form className="popup-form" onSubmit={handleFormSubmit}>
+                                <input
+                                    type="text"
+                                    placeholder="Nome"
+                                    value={customerName}
+                                    onChange={(e) => setCustomerName(e.target.value)}
+                                    required
+                                />
+                                <input
+                                    type="email"
+                                    placeholder="Email"
+                                    value={customerEmail}
+                                    onChange={(e) => setCustomerEmail(e.target.value)}
+                                    required
+                                />
+                                <button type="submit" disabled={isProcessing}>
+                                    {isProcessing ? "Invio..." : "Invia"}
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                )}
+
+                {/* Success Message */}
+                {showSuccess && (
+                    <div className="popup-overlay success-message">
+                        <div className="popup-container success-popup">
+                            <p>La tua configurazione è stata inviata con successo!</p>
+                        </div>
+                    </div>
+                )}
+
+                {/* Error Message */}
+                {showError && (
+                    <div className="popup-overlay error-message">
+                        <div className="popup-container error-popup">
+                            <p>Si è verificato un errore durante l'invio!</p>
+                        </div>
+                    </div>
+                )}
+
+                {/* Colonna DESTRA */}
+                <div className="configurator configurator--right">
+                    <div className="configurator__section">
+                        <div className="configurator__section__title">Tasti</div>
+                        <div className="configurator__section__values">
+                            {isMobile ? (
+                                <select
+                                    className="color-dropdown"
+                                    value={tastiColor.name}
+                                    onChange={(e) => {
+                                        const selected = materialColors.find(c => c.name === e.target.value);
+                                        setTastiColor(selected);
+                                    }}
+                                >
+                                    {materialColors.map((item, index) => (
+                                        <option key={index} value={item.name}>{item.name}</option>
+                                    ))}
+                                </select>
+                            ) : (
+                                materialColors.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className={`item ${item.color === tastiColor.color ? "item--active" : ""}`}
+                                        onClick={() => setTastiColor(item)}
+                                    >
+                                        <div className="item__dot" style={{ backgroundColor: item.color }} />
+                                        <div className="item__label">{item.name}</div>
+                                    </div>
+                                ))
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="configurator__section">
+                        <div className="configurator__section__title">Schermo</div>
+                        <div className="configurator__section__values">
+                            {isMobile ? (
+                                <select
+                                    className="color-dropdown"
+                                    value={schermo2Color.name}
+                                    onChange={(e) => {
+                                        const selected = materialColors.find(c => c.name === e.target.value);
+                                        setSchermo2Color(selected);
+                                    }}
+                                >
+                                    {materialColors.map((item, index) => (
+                                        <option key={index} value={item.name}>{item.name}</option>
+                                    ))}
+                                </select>
+                            ) : (
+                                materialColors.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className={`item ${item.color === schermo2Color.color ? "item--active" : ""}`}
+                                        onClick={() => setSchermo2Color(item)}
+                                    >
+                                        <div className="item__dot" style={{ backgroundColor: item.color }} />
+                                        <div className="item__label">{item.name}</div>
+                                    </div>
+                                ))
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="configurator__section">
+                        <div className="configurator__section__title">Speaker</div>
+                        <div className="configurator__section__values">
+                            {isMobile ? (
+                                <select
+                                    className="color-dropdown"
+                                    value={ariaColor.name}
+                                    onChange={(e) => {
+                                        const selected = materialColors.find(c => c.name === e.target.value);
+                                        setAriaColor(selected);
+                                    }}
+                                >
+                                    {materialColors.map((item, index) => (
+                                        <option key={index} value={item.name}>{item.name}</option>
+                                    ))}
+                                </select>
+                            ) : (
+                                materialColors.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className={`item ${item.color === ariaColor.color ? "item--active" : ""}`}
+                                        onClick={() => setAriaColor(item)}
+                                    >
+                                        <div className="item__dot" style={{ backgroundColor: item.color }} />
+                                        <div className="item__label">{item.name}</div>
+                                    </div>
+                                ))
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>

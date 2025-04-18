@@ -248,13 +248,94 @@
     transition: opacity 0.3s ease-in-out;
 }
 
+.canvas-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
 /* VERSIONE MOBILE */
 @media (max-width: 768px) {
-    
-    /* Nascondi i blocchi con i colori */
-  .configurator--left,
-  .configurator--right {
-    display: none;
-  }
+
+    .App {
+        height: auto;
+        overflow-y: auto;
+        padding-bottom: 100px;
+        /* spazio per gli ultimi dropdown */
+        background-color: #101010 !important;
+        /* Fallback per un fondo scuro */
+
     }
-  
+
+    .canvas-wrapper {
+        width: 100vw;
+        height: 60vh;
+        /* aumenta o diminuisci a piacere */
+    }
+
+    .configurator-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 12px;
+        box-sizing: border-box;
+    }
+
+    .configurator {
+        position: static;
+        background: transparent;
+        box-shadow: none;
+        width: 100%;
+        padding: 0px;
+        margin-bottom: 0px;
+        display: grid;
+        /* Utilizzo della griglia anche per il mobile */
+        grid-template-columns: 1fr 1fr;
+        /* Due colonne anche qui */
+    }
+
+    .color-dropdown {
+        padding: 8px;
+        font-size: 14px;
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .color-dropdown:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    .configurator__section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+
+    }
+
+    .configurator__section__title {
+        margin: 0;
+        /* Rimuove il margine inferiore */
+        padding-bottom:  5px;
+        /* Rimuove eventuali padding inferiori */
+    }
+
+    .configurator__section__values {
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        margin-top: 0;
+        margin-bottom: 10px;
+        padding-bottom: 0;
+        padding-top: 0;
+        /* Rimuove eventuali padding inferiori */
+    }
+}
