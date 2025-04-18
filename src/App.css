@@ -248,10 +248,13 @@
     transition: opacity 0.3s ease-in-out;
 }
 
-@media screen and (max-widht: 1200px) {
-    .configurator {
-        position: initial;
-        height: auto;
-        min-height: auto;
+/* VERSIONE MOBILE */
+@media (max-width: 768px) {
+    
+    /* Nascondi i blocchi con i colori */
+  .configurator--left,
+  .configurator--right {
+    display: none;
+  }
     }
-}
+  

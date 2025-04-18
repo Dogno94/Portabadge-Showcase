@@ -14,12 +14,10 @@ const Experience = () => {
             azimuth={[-Math.PI / 3, Math.PI / 3]} // Limita la rotazione orizzontale da -60° a +60°
             snap={false} // disattiva snap
             global={false} // evita recenter globale
-
         >
             <group rotation={[Math.PI / 2, 0, 0]}>
                 <PortaBadge />
             </group>
-
 
             <Stage environment={"city"} intensity={0.6} contactShadow={false}>
             </Stage>
