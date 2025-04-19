@@ -347,11 +347,11 @@ canvas {
     }
 
     .random-button {
-        bottom: 20px;
+        bottom: 0px;
         right: 16px;
     }
 
-    .popup-form button {
+    .send-button {
         bottom: 20px;
         right: 90px;
     }
