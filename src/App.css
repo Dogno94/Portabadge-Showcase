@@ -324,7 +324,7 @@ canvas {
     .configurator__section__title {
         margin: 0;
         /* Rimuove il margine inferiore */
-        padding-bottom:  5px;
+        padding-bottom: 5px;
         /* Rimuove eventuali padding inferiori */
     }
 
@@ -337,5 +337,22 @@ canvas {
         padding-bottom: 0;
         padding-top: 0;
         /* Rimuove eventuali padding inferiori */
+    }
+
+    .random-button,
+    .send-button {
+        padding: 8px 14px;
+        font-size: 12px;
+        border-radius: 10px;
+    }
+
+    .random-button {
+        bottom: 20px;
+        right: 16px;
+    }
+
+    .popup-form button {
+        bottom: 20px;
+        right: 90px;
     }
 }
