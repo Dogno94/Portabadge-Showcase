@@ -342,10 +342,10 @@ canvas {
     .random-button {
         position: fixed;
         top: 100px;
-        right: 15px;
+        right: 10px;
         z-index: 1000;
         font-size: 16px;
-        padding: 5;
+        padding: 2px;
     }
 
     .send-button {
