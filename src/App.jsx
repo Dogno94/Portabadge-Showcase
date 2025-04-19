@@ -25,7 +25,7 @@ function App() {
             <fog attach="fog" args={['#101010', 10, 20]} />
             <PerspectiveCamera
               makeDefault position={[0, 0, 12]}
-              fov={isMobile ? 75: 62.5}
+              fov={isMobile ? 72.5: 62.5}
               near={0.1}
               far={1000}
             />
