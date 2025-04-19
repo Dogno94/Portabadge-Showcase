@@ -345,19 +345,20 @@ canvas {
         right: 0px;
         z-index: 1000;
         font-size: 12px;
-      }
-    
-      .send-button {
+    }
+
+    .send-button {
         position: fixed;
         bottom: 50px;
-        right: 0px;
+        right: 50px;
         z-index: 1000;
         background-color: transparent;
-      }
-    
-      .send-button button {
+    }
+
+    .send-button button {
         padding: 12px 16px;
         font-size: 12px;
         border-radius: 10px;
-              }
+        background-color: rgb(72, 190, 18);
+    }
 }
