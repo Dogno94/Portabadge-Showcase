@@ -4,7 +4,7 @@ import PortaBadge from "./PortaBadge";
 const Experience = ({ isMobile }) => {
     return (
         <PresentationControls
-            speed={isMobile ? 0.5 : 2}
+            speed={isMobile ? 1 : 2}
             polar={isMobile ? [-Math.PI / 20, Math.PI / 10] : [-Math.PI / 4, Math.PI / 3]}
             // Limita la rotazione verticale             
             azimuth={isMobile ? [-Math.PI / 5, Math.PI / 5] : [-Math.PI / 3, Math.PI / 3]}
