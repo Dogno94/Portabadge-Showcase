@@ -16,8 +16,7 @@
     -ms-user-select: none;
     /* Internet Explorer/Edge */
     user-select: none;
-    /* Non-prefixed version, currently
-                                        supported by Chrome, Edge, Opera and Firefox */
+    /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
 .configurator {
@@ -29,6 +28,7 @@
     padding: 32px;
     background: rgba(50, 46, 121, 0.817);
     border-radius: 45px;
+
 }
 
 .configurator--left {
@@ -265,101 +265,175 @@ canvas {
     .App {
         height: auto;
         overflow-y: auto;
-        padding-bottom: 100px;
-        /* spazio per gli ultimi dropdown */
-        background-color: #101010 !important;
-        /* Fallback per un fondo scuro */
-
+        width: 100%;
     }
 
     .canvas-wrapper {
-        width: 100vw;
-        height: 40vh;
+        touch-action: none;
+        width: 100%;
+        height: 100vh;
         /* aumenta o diminuisci a piacere */
     }
 
-    .configurator-container {
+    .mobile-controls {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        padding: 12px;
-        box-sizing: border-box;
+        gap: 40px;
+        padding: 10px;
+        z-index: 20;
     }
 
-    .configurator {
-        position: static;
-        background: transparent;
-        box-shadow: none;
-        width: 100%;
-        padding: 0px;
-        margin-bottom: 0px;
+    .main-button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 14px 0;
+        /* meno padding orizzontale */
+        width: 60px;
+        /* larghezza fissa */
+        height: 60px;
+        /* altezza fissa */
+        border-radius: 50%;
+        /* cerchio perfetto */
+        font-size: 24px;
+        /* più grande per emoji o icona */
+        display: block;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        margin: 10px 0;
+    }
+
+    .main-button:hover {
+        background-color: #45a049;
+    }
+
+    .customization-buttons {
         display: grid;
-        /* Utilizzo della griglia anche per il mobile */
-        grid-template-columns: 1fr 1fr;
-        /* Due colonne anche qui */
-    }
-
-    .color-dropdown {
-        padding: 8px;
-        font-size: 16px;
-        width: 100%;
+        grid-template-columns: repeat(3, 1fr);
+        /* Prima riga con 3 bottoni */
+        gap: 10px;
         margin-top: 10px;
-        margin-bottom: 10px;
+        visibility: visible;
     }
 
-    .color-dropdown:focus {
-        outline: none;
-        box-shadow: none;
+    .customization-buttons button {
+        background-color: #692828;
+        border: 1px solid #ccc;
+        padding: 15px;
+        font-size: 14px;
+        border-radius: 50px;
+        /*cerchio*/
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background-color 0.3s ease;
     }
 
-    .configurator__section {
+    .customization-buttons button:hover {
+        background-color: #ddd;
+    }
+
+    .color-palette-container {
+        margin-top: 10px;
+    }
+
+    .color-palette {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        /* 5 colonne */
+        gap: 12px;
+        margin-top: 10px;
+    }
+
+    .item {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
-
+        cursor: pointer;
     }
 
-    .configurator__section__title {
-        margin: 0;
-        /* Rimuove il margine inferiore */
-        padding-bottom: 5px;
-        /* Rimuove eventuali padding inferiori */
+    .item__dot {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        margin-bottom: 4px;
+        /* Spazio tra il cerchio e il testo */
     }
 
-    .configurator__section__values {
-        display: flex;
-        flex-direction: column;
-        gap: 0px;
-        margin-top: 0;
-        margin-bottom: 10px;
-        padding-bottom: 0;
-        padding-top: 0;
-        /* Rimuove eventuali padding inferiori */
+    .item--active .item__dot {
+        border: 2px solid #000;
     }
 
-    .random-button {
-        position: fixed;
-        top: 100px;
-        right: 10px;
-        z-index: 1000;
-        font-size: 16px;
-        padding: 2px;
-    }
-
-    .send-button {
-        position: fixed;
-        bottom: 50px;
-        right: 0px;
-        z-index: 1000;
-        background-color: transparent;
-    }
-
-    .send-button button {
-        padding: 12px 16px;
+    .item__label {
         font-size: 12px;
-        border-radius: 10px;
-        background-color: rgb(72, 190, 18);
+        text-align: center;
+        margin-top: 4px;
+        width: 100%;
+        /* Limita la larghezza dell'etichetta */
+        max-width: 100px;
+        /* Imposta una larghezza massima per il testo */
     }
+
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Sfondo semi-trasparente */
+        z-index: 99999;
+        /* Assicurati che il popup sia sopra altri contenuti */
+    }
+
+    .popup-container {
+        background-color: white;
+        padding: 24px;
+        border-radius: 12px;
+        width: 80%;
+        max-width: 400px;
+        /* Imposta una larghezza massima per il popup */
+        text-align: center;
+        position: relative;
+    }
+
+    .success-message {
+       
+        color: white;
+        font-size: 18px;
+        padding: 0px;
+        border-radius: 8px;
+        margin-top: 20px;
+        text-align: center;
+        position: fixed;
+        width: 100%;
+        max-width: 400px; /* Larghezza massima per il messaggio */
+        margin-left: 0%;
+    }
+
+    .success-popup {
+        position: fixed;
+        width: 80%;
+        max-width: 400px;
+        margin: auto;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Centra il popup */
+        padding: 20px;
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+
 }

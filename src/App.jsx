@@ -24,12 +24,12 @@ function App() {
             <color attach="background" args={['#101010']} />
             <fog attach="fog" args={['#101010', 10, 20]} />
             <PerspectiveCamera
-              makeDefault position={[0, 0, 12]}
-              fov={isMobile ? 63: 62.5}
+              makeDefault position={isMobile ? [0, 0, 9] : [0, 0, 12]}
+              fov={isMobile ? 90 : 62.5}
               near={0.1}
               far={1000}
             />
-            <Experience />
+            <Experience isMobile={isMobile} />
           </Canvas>
         </div>
         <Configurator />

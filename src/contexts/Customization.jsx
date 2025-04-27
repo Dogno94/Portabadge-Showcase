@@ -57,7 +57,7 @@ export const materialColors = [
     },
     {
         color: "#59D9AA",
-        name: "verde menta",
+        name: "menta",
         metalness: 0,
         roughness: 0.5,
     },
