@@ -17,7 +17,7 @@ const Experience = ({ isMobile }) => {
             cursor={true} // così ti fa anche vedere che puoi trascinare
         >
             <group
-                position={isMobile ? [0, 2, 0] : [0, 0, 0]}
+                position={isMobile ? [0, 1.8, 0] : [0, 0, 0]}
                 rotation={[Math.PI / 2, 0, 0]}>
                 <PortaBadge />
             </group>
@@ -32,7 +32,7 @@ const Experience = ({ isMobile }) => {
 
             <mesh
                 rotation={[-Math.PI / 2, 0, 0]}
-                position={isMobile ? [0, -4, 0] : [0, -6, 0]}>
+                position={isMobile ? [0, -4.2, 0] : [0, -6, 0]}>
                 <planeGeometry args={[170, 170]} />
                 <MeshReflectorMaterial
                     blur={[300, 100]}

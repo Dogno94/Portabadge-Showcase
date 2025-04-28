@@ -126,9 +126,9 @@ const Configurator = () => {
             setAriaColor(color);
         }
         // Imposta colorSelected a true per far sparire la palette e far riapparire i tasti
-        setColorSelected(true);
+        /* setColorSelected(true);        
+         setShowCustomizationMenu(false);*/
         setSelectedSection(null);
-        setShowCustomizationMenu(false);
     };
 
     const handleToggleCustomizationMenu = () => {
@@ -137,6 +137,10 @@ const Configurator = () => {
         setShowCustomizationMenu(!showCustomizationMenu);
     };
 
+    const lightColors = ['#ffffff', '#f7e6de', '#f4ee2a', '#d1d5cd'];
+    function getTextColor(backgroundColor) {
+        return lightColors.includes(backgroundColor.toLowerCase()) ? 'black' : 'white';
+    }
 
     return (
         <>
@@ -162,11 +166,44 @@ const Configurator = () => {
 
                             {showCustomizationMenu && !selectedSection && !colorSelected && (
                                 <div className="customization-buttons">
-                                    <button onClick={() => setSelectedSection('cornice')}>Cornice</button>
-                                    <button onClick={() => setSelectedSection('facciata')}>Facciata</button>
-                                    <button onClick={() => setSelectedSection('tasti')}>Tasti</button>
-                                    <button onClick={() => setSelectedSection('schermo')}>Schermo</button>
-                                    <button onClick={() => setSelectedSection('aria')}>Speaker</button>
+                                    <button onClick={() => setSelectedSection('cornice')}
+                                        style={{
+                                            backgroundColor: corniceColor.color,
+                                            color: getTextColor(corniceColor.color)
+                                        }}
+                                    >Cornice</button>
+                                    <button onClick={() => setSelectedSection('facciata')}
+                                        style={{
+                                            backgroundColor: facciataColor.color,
+                                            color: getTextColor(facciataColor.color)
+                                        }}
+                                    >Facciata</button>
+                                    <button onClick={() => setSelectedSection('tasti')}
+                                        style={{
+                                            backgroundColor: tastiColor.color,
+                                            color: getTextColor(tastiColor.color)
+                                        }}
+                                    >Tasti</button>
+                                    <button onClick={() => setSelectedSection('schermo')}
+                                        style={{
+                                            backgroundColor: schermo2Color.color,
+                                            color: getTextColor(schermo2Color.color)
+                                        }}
+                                    >Schermo</button>
+                                    <button onClick={() => setSelectedSection('aria')}
+                                        style={{
+                                            backgroundColor: ariaColor.color,
+                                            color: getTextColor(ariaColor.color)
+                                        }}
+                                    >Speaker</button>
+
+                                    {/* Bottone Indietro */}
+                                    <button
+                                        onClick={() => setShowCustomizationMenu(false)}
+                                        className="back-button"
+                                    >
+                                        ↩️
+                                    </button>
                                 </div>
                             )}
 
@@ -178,20 +215,6 @@ const Configurator = () => {
                                     {selectedSection === 'schermo' && renderColorPalette(schermo2Color, setSchermo2Color)}
                                     {selectedSection === 'aria' && renderColorPalette(ariaColor, setAriaColor)}
                                 </div>
-                            )}
-
-                            {colorSelected && !showCustomizationMenu && !selectedSection && (
-                                <>
-                                    <button className="main-button" onClick={() => handleToggleCustomizationMenu(prev => !prev)}>
-                                        🎨
-                                    </button>
-                                    <button className="main-button" onClick={handleRandomizeColors}>
-                                        🎲
-                                    </button>
-                                    <button className="main-button" onClick={handleSendConfiguration}>
-                                        📩
-                                    </button>
-                                </>
                             )}
                         </div>
                     )}

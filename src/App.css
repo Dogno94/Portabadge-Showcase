@@ -259,6 +259,33 @@ canvas {
     height: 100% !important;
 }
 
+.logo {
+    position: fixed;
+    width: 100px;
+    /* Imposta la larghezza del logo */
+    height: auto;
+    /* Mantieni la proporzione dell'immagine */
+    margin-top: 50px;
+    /* Aggiungi un margine superiore se necessario */
+    z-index: 999;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.instagram-button {
+    position: fixed;
+    margin-top: 50px;
+    z-index: 999;
+    left: 55%;
+    transform: translateX(-50%) scale(1.5);
+    transition: transform 0.3s, border-color 0.3s;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* VERSIONE MOBILE */
 @media (max-width: 768px) {
 
@@ -315,13 +342,14 @@ canvas {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         /* Prima riga con 3 bottoni */
-        gap: 10px;
-        margin-top: 10px;
+        gap: 20px;
         visibility: visible;
+        justify-items: center;
+        margin-bottom: 20px;
     }
 
     .customization-buttons button {
-        background-color: #692828;
+        /* background-color: #692828;*/
         border: 1px solid #ccc;
         padding: 15px;
         font-size: 14px;
@@ -332,11 +360,36 @@ canvas {
         justify-content: center;
         align-items: center;
         transition: background-color 0.3s ease;
+        height: 50px;
+
     }
 
     .customization-buttons button:hover {
         background-color: #ddd;
     }
+
+    .back-button {
+        background-color: transparent !important;
+        /* Nessun colore di sfondo */
+        border: none !important;
+        /* Nessun bordo */
+        font-size: 40px !important;
+        /* Dimensione dell'emoji */
+        color: #333 !important;
+        /* Colore dell'emoji */
+        opacity: 0.8;
+        /* Opacità per dare un effetto soft */
+        cursor: pointer;
+        /* Mostra il cursore a mano */
+        padding: 0 !important;
+        /* Nessun padding, per ridurre lo spazio extra attorno all'emoji */
+    }
+
+    .back-button:hover {
+        color: #555 !important;
+        /* Colore più chiaro per l'emoji al passaggio del mouse */
+    }
+
 
     .color-palette-container {
         margin-top: 10px;
@@ -407,7 +460,7 @@ canvas {
     }
 
     .success-message {
-       
+
         color: white;
         font-size: 18px;
         padding: 0px;
@@ -416,7 +469,8 @@ canvas {
         text-align: center;
         position: fixed;
         width: 100%;
-        max-width: 400px; /* Larghezza massima per il messaggio */
+        max-width: 400px;
+        /* Larghezza massima per il messaggio */
         margin-left: 0%;
     }
 
@@ -427,7 +481,8 @@ canvas {
         margin: auto;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%); /* Centra il popup */
+        transform: translate(-50%, -50%);
+        /* Centra il popup */
         padding: 20px;
         background-color: #4CAF50;
         color: white;
@@ -435,5 +490,17 @@ canvas {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         text-align: center;
     }
+
+    .logo {
+        width: 60px !important;
+        margin-top: 25px;
+    }
+
+    .instagram-button {
+        margin-top: 20px;
+        left: 70%;
+        transform: translateX(-50%) scale(1);
+    }
+
 
 }
